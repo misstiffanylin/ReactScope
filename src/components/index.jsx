@@ -3,21 +3,21 @@ import { render } from 'react-dom';
 
 
 class App extends Component {
-    constructor() {
-        super();
-        this.state = {
-            phrase: "ciao"
-        }
+  constructor() {
+    super();
+    this.state = {
+      phrase: "ciao"
     }
+  }
 
-    render() {
-        return (
-            <div>Hello World!!!! and {this.state.phrase}</div>
-        );
-    }
+  render() {
+    return (
+      <div>Hello World!!!! and {this.state.phrase}</div>
+    );
+  }
 }
 
 render(
-    <App />,
-    document.getElementById('app')
+  <App />,
+  document.getElementById('app')
 )
