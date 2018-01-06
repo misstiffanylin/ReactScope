@@ -4,7 +4,7 @@ import webpack from 'webpack';
 import fs from 'fs';
 
 const paths = {
-    build: './build'
+    build: './chrome'
 };
 
 //Clean 

@@ -5,7 +5,7 @@ module.exports = {
     path.resolve('./src/components/index.jsx')
   ],
   output: {
-    path: path.resolve('./build/'),
+    path: path.resolve('./chrome/'),
     filename: 'app.js',
     publicPath: '.'
   },
