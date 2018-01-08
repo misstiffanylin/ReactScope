@@ -27,7 +27,8 @@ const files = [
     './manifest.json',
     './src/index.html',
     './src/devtools/devtools.html',
-    './src/devtools/devtools.js'
+    './src/devtools/devtools.js',
+    './src/backend/hook.js'
 ];
 gulp.task('copy:static', (done) => {
     gulp 
