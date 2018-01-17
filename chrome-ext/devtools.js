@@ -1,7 +1,7 @@
 let storage = {};
 
 chrome.devtools.panels.create(
-  'React-Scope-Test', // title of the panel
+  'React-Scope', // title of the panel
   null, // the path to the icon
   'devtools.html', // html page for injecting into the tab's content
   sendMessage // callback function optional
@@ -16,7 +16,7 @@ let reactData; // current state data
 function sendMessage() {
   console.log('React-Scope-Test Console');
   let port = chrome.runtime.connect({
-    name: 'ilhfmcnjanhibheilakfaahiehikcmgf',
+    name: 'ckedflenfinokdhkipidkogjhfmbfnel',
   });
   port.postMessage({
     name: 'connect',
