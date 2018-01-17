@@ -1,0 +1,13 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "airbnb"
+  ],
+  "env": {
+    "browser": true
+  },
+  "rules": {
+    "no-underscore-dangle": "off"
+  }
+}
