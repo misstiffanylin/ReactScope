@@ -3,7 +3,7 @@ chrome.devtools.panels.create(
   null, // the path to the icon
   'devtools.html', // html page for injecting into the tab's content
   sendMessage // callback function optional
-);
+)
 
 // let storage = {};
 const cache = new StateCache();
@@ -15,46 +15,25 @@ let reactData = {}; // current state data
 function sendMessage() {
   console.log('React-Scope-Test Console');
   let port = chrome.runtime.connect({
-<<<<<<< HEAD
     // name: 'ilhfmcnjanhibheilakfaahiehikcmgf',
     name: 'gipfpnbcdiknjomlnphmckabkmoeebon'
-=======
-    name: 'ckedflenfinokdhkipidkogjhfmbfnel',
->>>>>>> 6ed9741a866def7f14be4b0a8543a503f513a147
   });
   port.postMessage({
     name: 'connect',
     tabId: chrome.devtools.inspectedWindow.tabId,
   });
   port.onMessage.addListener((msg) => {
-<<<<<<< HEAD
-    // console.log(msg, "msg data")
-    if (!msg.data) {
-      console.log(msg);
-      console.log('There is no data');
-    } else {
-      cache.addToHead(msg);
-      console.log('data is here!')
-      console.log('msg: ' + msg.data)
-      console.log(cache, 'cache data');
-      reactData = cache.head.value.data.currentState[1].children[3];
-      prevNode = cache.head.prev;
-      // .value.data.currentState[1].children[3];
-      cleanData = getChildren(reactData);
-      console.log(cleanData, 'result');
-    }
-  })
-  let copy = reactData
-  console.log("copy of reactData", copy)
-  return messageReact(reactData);
+    // console.log('cache', cache);
+    cache.addToHead(msg);
+    reactData = cache.head.value.data.currentState[1].children[3];
+    prevNode = cache.head.prev;
+    cleanData = getChildren(reactData);
+    console.log(cleanData, 'result');
+    return messageReact(cleanData)
+  });
 }
 
-function messageReact(data) {
-  // window.postMessage({
-  //   message: 'hello there!', 
-  //   data: data
-  // }, '*')
-  // console.log('postmessaged')
+function messageReact(data) { //sending the message to the React App
   setTimeout(function() {
     console.log('postmessaging')
     window.postMessage({
@@ -63,16 +42,6 @@ function messageReact(data) {
     }, '*')
     console.log('postmessaged')
   }, 10)
-=======
-    // console.log('cache', cache);
-    cache.addToHead(msg);
-    reactData = cache.head.value.data.currentState[1].children[3];
-    prevNode = cache.head.prev;
-    // .value.data.currentState[1].children[3];
-    cleanData = getChildren(reactData);
-    // console.log(cleanData, 'result');
-  });
->>>>>>> 6ed9741a866def7f14be4b0a8543a503f513a147
 }
 
 function retrieveState(string) {

@@ -19,11 +19,10 @@ class Main extends Component {
     console.log('componentDidMount')
     window.addEventListener('message', (event) => {
       console.log('inside of addEventListener')
-      console.log(event)
       if (event.origin === "chrome-extension://gipfpnbcdiknjomlnphmckabkmoeebon") { //how do you get this?
-      console.log(event.data)
+      console.log("from React: ", event.data)
         this.setState({
-          message: "new message " + event.data.message
+          message: "the first component is  " + event.data.data[0].name
         })
       }
     })
