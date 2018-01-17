@@ -1,48 +1,24 @@
 const path = require('path');
 
 module.exports = {
-  entry: [
-    path.resolve('./src/components/index.jsx')
-  ],
+  entry: path.join(__dirname, '/chrome-ext/frontend/app.jsx'),
   output: {
-    path: path.resolve('./chrome/'),
-    filename: 'app.js',
-    publicPath: '.'
-  },
-  module: {
-    loaders: [
-      {
-        test: /\.jsx/,
-        include: path.resolve('./src/components/'),
-        loader: 'babel-loader'
-      },
-      {
-        test: /\.s?css$/,
-        use: [
-          {loader: 'style-loader'},
-          {
-            loader: 'css-loader?importLoaders=1',
-            query: {
-              modules: true,
-              localIdentName: '[name]__[local]___[hash:base64:5]'
-            }
-          },
-          {loader: 'sass-loader'},
-          {
-            loader: 'postcss-loader',
-            options: {
-              plugins: function () {
-                return [
-                  require('postcss-cssnext')
-                ];
-              }
-            }
-          }
-        ]
-      }
-    ]
+    path: path.join(__dirname, '/chrome-ext/build'),
+    filename: 'bundle.js',
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.scss', '.css']
-  }
+    extensions: ['.js', '.jsx'],
+  },
+  watch: true,
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: [
+          'babel-loader',
+        ],
+      },
+    ],
+  },
 };
