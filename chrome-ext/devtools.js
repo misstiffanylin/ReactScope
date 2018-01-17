@@ -16,7 +16,8 @@ function sendMessage() {
   console.log('React-Scope-Test Console');
   let port = chrome.runtime.connect({
     // name: 'ilhfmcnjanhibheilakfaahiehikcmgf',
-    name: 'gipfpnbcdiknjomlnphmckabkmoeebon'
+    // name: 'gipfpnbcdiknjomlnphmckabkmoeebon'
+    name: chrome.runtime.id
   });
   port.postMessage({
     name: 'connect',
