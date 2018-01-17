@@ -22,15 +22,13 @@ function sendMessage() {
     tabId: chrome.devtools.inspectedWindow.tabId,
   });
   port.onMessage.addListener((msg) => {
-    console.log(msg.data, "msg data")
-    console.log('cache', cache);
+    // console.log('cache', cache);
     cache.addToHead(msg);
-    console.log(cache, 'cache data');
     reactData = cache.head.value.data.currentState[1].children[3];
     prevNode = cache.head.prev;
     // .value.data.currentState[1].children[3];
     cleanData = getChildren(reactData);
-    console.log(cleanData, 'result');
+    // console.log(cleanData, 'result');
   });
 }
 
