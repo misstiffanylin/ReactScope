@@ -23,8 +23,6 @@ function getInitialStateOnce() {
       });
       // parse state
       initialState = checkReactDOM(initialState.current.stateNode);
-      // stringify data
-      initialState = stringifyData(initialState);
       run = true;
     }
   };
@@ -46,7 +44,6 @@ function stringifyData(obj) {
   box = null;
   return data;
 }
-
 
 // Monkey patch to listen for state changes
 // has to be in IFFY?
@@ -270,7 +267,7 @@ function checkReactDOM(reactDOM) {
 }
 
 function transmitData(cache) {
-  console.log('transmitting');
+  console.log('transmitting', cache);
   // create a custom event to dispatch for actions for requesting data from background
   const customEvent = new CustomEvent('React-Scope-Test', { detail: { data: stringifyData(cache) } });
   window.dispatchEvent(customEvent);
