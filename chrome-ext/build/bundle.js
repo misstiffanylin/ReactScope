@@ -18314,7 +18314,9 @@ var Main = function (_Component) {
       console.log('componentDidMount');
       window.addEventListener('message', function (event) {
         console.log('inside of addEventListener');
-        if (event.origin === "chrome-extension://gipfpnbcdiknjomlnphmckabkmoeebon") {
+        console.log('event: ', event);
+        // if (event.origin === "chrome-extension://gipfpnbcdiknjomlnphmckabkmoeebon") { //how do you get this?
+        if (event.origin === "chrome-extension://" + chrome.runtime.id) {
           //how do you get this?
           console.log("from React: ", event.data);
           _this2.setState({
