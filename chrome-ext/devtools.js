@@ -1,12 +1,11 @@
-let storage = {};
-
 chrome.devtools.panels.create(
-  'React-Scope-Test', // title of the panel
+  'React-Scope', // title of the panel
   null, // the path to the icon
   'devtools.html', // html page for injecting into the tab's content
   sendMessage // callback function optional
 );
 
+// let storage = {};
 const cache = new StateCache();
 let cleanData = []; // clean data
 let prevData = []; // previous state data
@@ -16,14 +15,19 @@ let reactData = {}; // current state data
 function sendMessage() {
   console.log('React-Scope-Test Console');
   let port = chrome.runtime.connect({
+<<<<<<< HEAD
     // name: 'ilhfmcnjanhibheilakfaahiehikcmgf',
     name: 'gipfpnbcdiknjomlnphmckabkmoeebon'
+=======
+    name: 'ckedflenfinokdhkipidkogjhfmbfnel',
+>>>>>>> 6ed9741a866def7f14be4b0a8543a503f513a147
   });
   port.postMessage({
     name: 'connect',
     tabId: chrome.devtools.inspectedWindow.tabId,
   });
   port.onMessage.addListener((msg) => {
+<<<<<<< HEAD
     // console.log(msg, "msg data")
     if (!msg.data) {
       console.log(msg);
@@ -59,6 +63,16 @@ function messageReact(data) {
     }, '*')
     console.log('postmessaged')
   }, 10)
+=======
+    // console.log('cache', cache);
+    cache.addToHead(msg);
+    reactData = cache.head.value.data.currentState[1].children[3];
+    prevNode = cache.head.prev;
+    // .value.data.currentState[1].children[3];
+    cleanData = getChildren(reactData);
+    // console.log(cleanData, 'result');
+  });
+>>>>>>> 6ed9741a866def7f14be4b0a8543a503f513a147
 }
 
 function retrieveState(string) {
@@ -137,7 +151,7 @@ function Node(val) {
   this.prev = null;
 }
 
-StateCache.prototype.addToHead = (value) => {
+StateCache.prototype.addToHead = function (value) {
   const data = stringifyData(value);
   const node = new Node(data);
 
