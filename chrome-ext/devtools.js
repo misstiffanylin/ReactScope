@@ -11,12 +11,13 @@ const cache = new StateCache();
 let cleanData = []; // clean data
 let prevData = []; // previous state data
 let prevNode; // track of previous state
-let reactData; // current state data
+let reactData = {}; // current state data
 
 function sendMessage() {
   console.log('React-Scope-Test Console');
   let port = chrome.runtime.connect({
-    name: 'ilhfmcnjanhibheilakfaahiehikcmgf',
+    // name: 'ilhfmcnjanhibheilakfaahiehikcmgf',
+    name: 'gipfpnbcdiknjomlnphmckabkmoeebon'
   });
   port.postMessage({
     name: 'connect',
@@ -29,6 +30,8 @@ function sendMessage() {
       console.log('There is no data');
     } else {
       cache.addToHead(msg);
+      console.log('data is here!')
+      console.log('msg: ' + msg.data)
       console.log(cache, 'cache data');
       reactData = cache.head.value.data.currentState[1].children[3];
       prevNode = cache.head.prev;
@@ -36,7 +39,26 @@ function sendMessage() {
       cleanData = getChildren(reactData);
       console.log(cleanData, 'result');
     }
-  });
+  })
+  let copy = reactData
+  console.log("copy of reactData", copy)
+  return messageReact(reactData);
+}
+
+function messageReact(data) {
+  // window.postMessage({
+  //   message: 'hello there!', 
+  //   data: data
+  // }, '*')
+  // console.log('postmessaged')
+  setTimeout(function() {
+    console.log('postmessaging')
+    window.postMessage({
+      message: 'hello there!', 
+      data: data
+    }, '*')
+    console.log('postmessaged')
+  }, 10)
 }
 
 function retrieveState(string) {
