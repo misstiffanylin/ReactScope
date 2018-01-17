@@ -3,19 +3,20 @@ chrome.devtools.panels.create(
   null, // the path to the icon
   'devtools.html', // html page for injecting into the tab's content
   sendMessage // callback function optional
-);
+)
 
 // let storage = {};
 const cache = new StateCache();
 let cleanData = []; // clean data
 let prevData = []; // previous state data
 let prevNode; // track of previous state
-let reactData; // current state data
+let reactData = {}; // current state data
 
 function sendMessage() {
   console.log('React-Scope-Test Console');
   let port = chrome.runtime.connect({
-    name: 'ckedflenfinokdhkipidkogjhfmbfnel',
+    // name: 'ilhfmcnjanhibheilakfaahiehikcmgf',
+    name: 'gipfpnbcdiknjomlnphmckabkmoeebon'
   });
   port.postMessage({
     name: 'connect',
@@ -26,10 +27,21 @@ function sendMessage() {
     cache.addToHead(msg);
     reactData = cache.head.value.data.currentState[1].children[3];
     prevNode = cache.head.prev;
-    // .value.data.currentState[1].children[3];
     cleanData = getChildren(reactData);
-    // console.log(cleanData, 'result');
+    console.log(cleanData, 'result');
+    return messageReact(cleanData)
   });
+}
+
+function messageReact(data) { //sending the message to the React App
+  setTimeout(function() {
+    console.log('postmessaging')
+    window.postMessage({
+      message: 'hello there!', 
+      data: data
+    }, '*')
+    console.log('postmessaged')
+  }, 10)
 }
 
 function retrieveState(string) {
