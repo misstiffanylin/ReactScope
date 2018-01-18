@@ -8,6 +8,7 @@ const Main = (props) => (
 	<h2>Name: {props.name}</h2>
 	<h2>State: {props.state}</h2>
 	<h2>Props: {props.props}</h2>
+	<h3>Hello</h3>
 </div>
 )
 
