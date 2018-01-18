@@ -16,7 +16,7 @@ let reactData; // current state data
 function sendMessage() {
   console.log('React-Scope-Test Console');
   let port = chrome.runtime.connect({
-    name: 'ilhfmcnjanhibheilakfaahiehikcmgf',
+    name: 'jjhebldiddkmoeebcohcbhbojjagnnlf',
   });
   port.postMessage({
     name: 'connect',
