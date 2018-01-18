@@ -1,17 +1,16 @@
-let storage = {};
-
 chrome.devtools.panels.create(
-  'React-Scope-Test', // title of the panel
+  'React-Scope', // title of the panel
   null, // the path to the icon
   'devtools.html', // html page for injecting into the tab's content
   sendMessage // callback function optional
-);
+)
 
+// let storage = {};
 const cache = new StateCache();
 let cleanData = []; // clean data
 let prevData = []; // previous state data
 let prevNode; // track of previous state
-let reactData; // current state data
+let reactData = {}; // current state data
 
 function sendMessage() {
   console.log('React-Scope-Test Console');
@@ -23,20 +22,25 @@ function sendMessage() {
     tabId: chrome.devtools.inspectedWindow.tabId,
   });
   port.onMessage.addListener((msg) => {
-    // console.log(msg, "msg data")
-    if (!msg.data) {
-      console.log(msg);
-      console.log('There is no data');
-    } else {
-      cache.addToHead(msg);
-      console.log(cache, 'cache data');
-      reactData = cache.head.value.data.currentState[1].children[3];
-      prevNode = cache.head.prev;
-      // .value.data.currentState[1].children[3];
-      cleanData = getChildren(reactData);
-      console.log(cleanData, 'result');
-    }
+    // console.log('cache', cache);
+    cache.addToHead(msg);
+    reactData = cache.head.value.data.currentState[1].children[3];
+    prevNode = cache.head.prev;
+    cleanData = getChildren(reactData);
+    console.log(cleanData, 'result');
+    return messageReact(cleanData)
   });
+}
+
+function messageReact(data) { //sending the message to the React App
+  setTimeout(function() {
+    console.log('postmessaging')
+    window.postMessage({
+      message: 'hello there!', 
+      data: data
+    }, '*')
+    console.log('postmessaged')
+  }, 10)
 }
 
 function retrieveState(string) {
@@ -115,7 +119,7 @@ function Node(val) {
   this.prev = null;
 }
 
-StateCache.prototype.addToHead = (value) => {
+StateCache.prototype.addToHead = function (value) {
   const data = stringifyData(value);
   const node = new Node(data);
 
