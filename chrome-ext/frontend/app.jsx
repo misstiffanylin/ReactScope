@@ -13,13 +13,14 @@ class Container extends Component {
 	}
 	
 	render() {
-    const nameData = <Main name={this.state.name} />
-    const stateData = <Main state={this.state.state} />
+    <Main />,
+    document.getElementById('app'),
+    const nameData = <Main name={this.state.name} />,
+    const stateData = <Main state={this.state.state} />,
     const propsData = <Main props={this.state.props} />
 
-    // const image = <Presentation dog={this.state.breeds[0]} />;
     return (
-      <div id='card'>
+      <div>
         {nameData},
         {stateData},
         {propsData}
@@ -27,7 +28,7 @@ class Container extends Component {
     )
   }
 
-render(
-  <Main />,
-  document.getElementById('app'),
-);
+// render(
+//   <Main />,
+//   document.getElementById('app'),
+// );
